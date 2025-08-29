@@ -5,6 +5,7 @@ import { useLoginWithPasskey } from "@privy-io/expo/passkey";
 import Constants from "expo-constants";
 import { useState } from "react";
 import * as Application from "expo-application";
+import { PRIVY_APP_ID, PRIVY_CLIENT_ID, PASSKEY_ASSOCIATED_DOMAIN } from '@env';
 
 export default function LoginScreen() {
   const [error, setError] = useState("");
@@ -33,18 +34,18 @@ export default function LoginScreen() {
     >
       <Text>Privy App ID:</Text>
       <Text style={{ fontSize: 10 }}>
-        {Constants.expoConfig?.extra?.privyAppId}
+        {PRIVY_APP_ID}
       </Text>
       <Text>Privy Client ID:</Text>
       <Text style={{ fontSize: 10 }}>
-        {Constants.expoConfig?.extra?.privyClientId}
+        {PRIVY_CLIENT_ID}
       </Text>
       <Text>
         Navigate to your{" "}
         <Text
           onPress={() =>
             Linking.openURL(
-              `https://dashboard.privy.io/apps/${Constants.expoConfig?.extra?.privyAppId}/settings?setting=clients`
+              `https://dashboard.privy.io/apps/${PRIVY_APP_ID}/settings?setting=clients`
             )
           }
         >
@@ -59,7 +60,7 @@ export default function LoginScreen() {
         <Text
           onPress={() =>
             Linking.openURL(
-              `https://dashboard.privy.io/apps/${Constants.expoConfig?.extra?.privyAppId}/settings?setting=clients`
+              `https://dashboard.privy.io/apps/${PRIVY_APP_ID}/settings?setting=clients`
             )
           }
         >
@@ -90,7 +91,7 @@ export default function LoginScreen() {
         title="Login using Passkey"
         onPress={() =>
           loginWithPasskey({
-            relyingParty: Constants.expoConfig?.extra?.passkeyAssociatedDomain,
+            relyingParty: PASSKEY_ASSOCIATED_DOMAIN,
           })
         }
       />

@@ -8,6 +8,7 @@ import {
   Inter_600SemiBold,
 } from "@expo-google-fonts/inter";
 import { useFonts } from "expo-font";
+import { PRIVY_APP_ID, PRIVY_CLIENT_ID } from '@env';
 
 export default function RootLayout() {
   useFonts({
@@ -17,8 +18,8 @@ export default function RootLayout() {
   });
   return (
     <PrivyProvider
-      appId={Constants.expoConfig?.extra?.privyAppId}
-      clientId={Constants.expoConfig?.extra?.privyClientId}
+      appId={PRIVY_APP_ID}
+      clientId={PRIVY_CLIENT_ID}
     >
       <Stack>
         <Stack.Screen name="index" />

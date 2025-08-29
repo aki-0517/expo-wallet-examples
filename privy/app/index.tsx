@@ -3,10 +3,11 @@ import Constants from "expo-constants";
 import LoginScreen from "@/components/LoginScreen";
 import { usePrivy } from "@privy-io/expo";
 import { UserScreen } from "@/components/UserScreen";
+import { PRIVY_APP_ID, PRIVY_CLIENT_ID } from '@env';
 
 export default function Index() {
   const { user } = usePrivy();
-  if ((Constants.expoConfig?.extra?.privyAppId as string).length !== 25) {
+  if (PRIVY_APP_ID.length !== 25) {
     return (
       <SafeAreaView>
         <View
@@ -16,13 +17,13 @@ export default function Index() {
             justifyContent: "center",
           }}
         >
-          <Text>You have not set a valid `privyAppId` in app.json</Text>
+          <Text>You have not set a valid `privyAppId` in .env</Text>
         </View>
       </SafeAreaView>
     );
   }
   if (
-    !(Constants.expoConfig?.extra?.privyClientId as string).startsWith(
+    !PRIVY_CLIENT_ID.startsWith(
       "client-"
     )
   ) {
@@ -35,7 +36,7 @@ export default function Index() {
             justifyContent: "center",
           }}
         >
-          <Text>You have not set a valid `privyClientId` in app.json</Text>
+          <Text>You have not set a valid `privyClientId` in .env</Text>
         </View>
       </SafeAreaView>
     );
